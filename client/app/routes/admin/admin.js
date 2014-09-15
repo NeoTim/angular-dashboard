@@ -11,7 +11,17 @@
       .state('admin', {
         url: '/admin',
         templateUrl: 'app/routes/admin/admin.html',
-        controller: 'AdminCtrl as vm'
+        controller: 'AdminCtrl as vm',
+        resolve: {
+          resolvedUsers: resolvedUsers
+        }
       });
+    function resolvedUsers(UserModel){
+      return UserModel.getList()
+        .then(function (data){
+          console.log('resolved', data);
+          return data;
+        });
+    }
   }
 }).call(this);
