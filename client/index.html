@@ -23,7 +23,6 @@
     <!-- build:css({.tmp,client}) app/app.css -->
     <link rel="stylesheet" href="app/app.css">
       <!-- injector:css -->
-      <link rel="stylesheet" href="app/dashboard.css">
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
@@ -33,8 +32,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    
-    
+
+
     <!-- <div ui-view=""></div> -->
     <div data-ng-controller="AppCtrl">
         <div data-ng-hide="isSpecificPage()"
@@ -51,7 +50,7 @@
             <section data-ui-view id="content" class="animate-fade-up"></section>
         </div>
     </div>
-    
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -155,6 +154,10 @@
           <script src="app/routes/main/main.js"></script>
           <script src="app/routes/task/task.controller.js"></script>
           <script src="app/routes/task/task.js"></script>
+          <script src="app/vendors/jquery.flot.animator.min.js"></script>
+          <script src="app/vendors/jquery.sparkline.min.js"></script>
+          <script src="app/vendors/responsive-tables.js"></script>
+          <script src="app/vendors/skycons.js"></script>
           <script src="components/modal/modal.service.js"></script>
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
