@@ -1,0 +1,34 @@
+//- div(ng-include='"components/navbar/navbar.html"')
+
+header#banner.hero-unit
+    //- h1 TraCom
+    img(src='assets/images/word.png', alt='I\'m TraCom')
+    p.lead Kick-start your next web app with a REAL-TIME Dashboard
+div.page
+  section.panel.panel-default
+    h1 Features:
+    div.panel-body
+      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in vm.awesomeThings')
+        li
+          a(href='#', tooltip='{{thing.info}}')
+            | {{thing.name}}
+            button.close(type='button', ng-click='vm.deleteThing(thing)') ×
+
+
+  section.panel.panel-default
+    div.panel-heading
+      label Syncs in realtime across clients
+    div.panel-body
+      form.thing-form
+        p.input-group
+          input.form-control(type='text', placeholder='Add a new thing here.', ng-model='vm.newThing')
+          span.input-group-btn
+            button.btn.btn-primary(type='submit', ng-click='vm.addThing()') Add New
+footer.footer
+  .container
+    p
+      | Angular Fullstack v0.0.1
+      = ' | '
+      a(href='https://twitter.com/tyhenkel') @tyhenkel
+      = ' | '
+      a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues
