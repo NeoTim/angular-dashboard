@@ -1,0 +1,25 @@
+div(ng-include='"components/navbar/navbar.html"')
+div.col-md-12
+  div.panel.panel-primary
+    div.panel-heading
+      | This is the customer view.
+    div.panel-body
+      ul.liist-group
+        li.list-group-item(ng-repeat="customer in vm.customers")
+          form(ng-submit="customer.save(); editMode = false")
+            table.table-full
+              tr
+                td.button
+                  a.btn.btn-primary(href="/customers/{{customer._id}}") View
+                td
+                  p(ng-hide="editMode") {{ customer.name}}
+                  input.form-control(type="text" ng-show="editMode" ng-model="customer.name" placehoder="Name")
+                td
+                  p(ng-hide="editMode") {{customer.info}}
+                  input.form-control(type="text" ng-show="editMode" ng-model="customer.info" placehoder="Info")
+                td.button
+                  button.btn.btn-warning(type="button" ng-hide="editMode" ng-click="editMode = true") Edit
+                  button.btn.btn-info(type="submit" ng-show="editMode") Save
+                  button.btn.btn-danger(type="button" ng-show="editMode" ng-click="customer.remove()")
+                    i.fa.fa-trash-o
+

@@ -1,14 +1,13 @@
 'use strict';
 (function(){
 
-  var Thing = function (Restangular) {
-    return Restangular.service('things');
-  };
-
-
-  Thing
-    .$inject = ['Restangular'];
-  angular.module('stageApp')
+  angular
+    .module('stageApp')
     .factory('Thing', Thing);
+    Thing.$inject = ['Restangular'];
+
+    function Thing(Restangular) {
+      return Restangular.service('things');
+    };
 
 }).call(this);

@@ -9,6 +9,7 @@
       'collapseNav',
       'highlightActive',
       'toggleOffCanvas',
+      'niceScroll',
       'slimScroll',
       'goBack'
     ])

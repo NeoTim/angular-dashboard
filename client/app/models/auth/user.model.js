@@ -1,10 +1,12 @@
 'use-strict';
 (function(){
-  var UserModel = function(Restangular){
-    return Restangular.service('users');
-  }
-  UserModel.$inject = ['Restangular'];
   angular
     .module('stageApp')
     .factory('UserModel', UserModel);
+
+  UserModel.$inject = ['Restangular'];
+  function UserModel(Restangular){
+    return Restangular.service('users');
+  }
+
 }).call(this);

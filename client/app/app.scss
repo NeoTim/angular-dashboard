@@ -24,7 +24,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 }
 @import "styles/global/var.scss";
 @import "styles/bootstrap-sass/bootstrap";
-// @import "styles/global/var-pages.scss";
+// @import "styles/global/_var-pages.scss";
 
 @import "compass/css3";
 
@@ -34,6 +34,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'routes/account/lock/lock.scss';
 @import 'routes/account/login/login.scss';
 @import 'routes/admin/admin.scss';
+@import 'routes/customer/customer.scss';
 @import 'routes/main/main.scss';
 @import 'routes/task/task.scss';
 @import 'styles/bootstrap-sass/bootstrap.scss';

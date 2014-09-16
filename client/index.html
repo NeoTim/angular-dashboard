@@ -32,8 +32,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-
-
+    
+    
     <!-- <div ui-view=""></div> -->
     <div data-ng-controller="AppCtrl">
         <div data-ng-hide="isSpecificPage()"
@@ -50,7 +50,7 @@
             <section data-ui-view id="content" class="animate-fade-up"></section>
         </div>
     </div>
-
+    
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -114,6 +114,7 @@
           <!-- injector:js -->
           <script src="app/UI/UICtrl.js"></script>
           <script src="app/UI/UIDirective.js"></script>
+          <script src="app/config/NavCtrl.js"></script>
           <script src="app/config/appCtrl.js"></script>
           <script src="app/config/authInterceptor.js"></script>
           <script src="app/config/localize.js"></script>
@@ -124,7 +125,8 @@
           <script src="app/config/ui-kit/FormValidation.js"></script>
           <script src="app/config/ui-kit/Map.js"></script>
           <script src="app/config/ui-kit/TableCtrl.js"></script>
-          <script src="app/config/ui-kit/dashboard.config.js"></script>
+          <script src="app/config/ui-kit/invoiceCtrl.js"></script>
+          <script src="app/config/ui-kit/uiKit.js"></script>
           <script src="app/config/ui-kit/uiPages.js"></script>
           <script src="app/directives/app.directives.js"></script>
           <script src="app/directives/collapseNav/collapseNav.js"></script>
@@ -132,6 +134,7 @@
           <script src="app/directives/goBack/goBack.js"></script>
           <script src="app/directives/highlightActive/highlightActive.js"></script>
           <script src="app/directives/imgHolder/imgHolder.js"></script>
+          <script src="app/directives/niceScroll/niceScroll.js"></script>
           <script src="app/directives/slimScroll/slimScroll.js"></script>
           <script src="app/directives/toggleMinNav/toggleMinNav.js"></script>
           <script src="app/directives/toggleOffCanvas/toggleOffCanvas.js"></script>
@@ -140,6 +143,8 @@
           <script src="app/models/auth/auth.service.js"></script>
           <script src="app/models/auth/user.model.js"></script>
           <script src="app/models/auth/user.service.js"></script>
+          <script src="app/models/customer/customer.service.js"></script>
+          <script src="app/models/customer/customer.socket.js"></script>
           <script src="app/models/task/taskStorage.js"></script>
           <script src="app/models/thing/thing.model.js"></script>
           <script src="app/models/thing/thing.socket.js"></script>
@@ -150,6 +155,8 @@
           <script src="app/routes/account/signup/signup.controller.js"></script>
           <script src="app/routes/admin/admin.controller.js"></script>
           <script src="app/routes/admin/admin.js"></script>
+          <script src="app/routes/customer/customer.controller.js"></script>
+          <script src="app/routes/customer/customer.js"></script>
           <script src="app/routes/main/main.controller.js"></script>
           <script src="app/routes/main/main.js"></script>
           <script src="app/routes/task/task.controller.js"></script>
