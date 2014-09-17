@@ -1,0 +1,81 @@
+$icon-font-path: "../fonts";
+$fa-font-path: "../fonts";
+
+// @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+
+
+/**
+ * App-wide Styles
+ */
+@import "../styles/global/var.scss";
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+.table-full {
+  width:100%;
+}
+
+.table-full tr td.button {
+  width:100px;
+}
+.modal-primary,
+.modal-info,
+.modal-success,
+.modal-warning,
+.modal-danger {
+  .modal-header {
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+  }
+}
+.modal-primary .modal-header {
+  background: $brand-primary;
+}
+.modal-info .modal-header {
+  background: $brand-info;
+}
+.modal-success .modal-header {
+  background: $brand-success;
+}
+.modal-warning .modal-header {
+  background: $brand-warning;
+}
+.modal-danger .modal-header {
+  background: $brand-danger;
+}
+.thing-form {
+    margin: 20px 0;
+}
+
+#banner {
+    border-bottom: none;
+    margin-top: -20px;
+}
+
+#banner h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.hero-unit {
+    // position: relative;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #353535;
+    text-align: center;
+    // text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 70px;
+    border-top: 1px solid #E5E5E5;
+}
+.trash { color:rgb(209, 91, 71); }

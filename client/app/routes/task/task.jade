@@ -1,0 +1,59 @@
+div.page.page-tasks
+  div.row
+    div.col-md-12
+      section.task-container
+        form.add-task(data-ng-submit="add()")
+          input.form-control(type="text"
+                           placeholder="What needs to be done?"
+                           data-ng-model="newTask"
+                           autofocus)
+          a.submit-button(type="submit" data-ng-click="add()")
+            span.glyphicon.glyphicon-plus
+        section
+          ul.filters.list-inline.nav.nav-tabs
+            li(data-ng-class="{active: statusFilter == ''}")
+              a(href="" data-toggle="tab" data-ng-click="filter('all')") All
+            li(data-ng-class="{active: statusFilter.completed == false }")
+              a(href="" data-toggle="tab" data-ng-click="filter('active')") Active
+            li(data-ng-class="{active: statusFilter.completed == true }")
+              a(href="" data-toggle="tab" data-ng-click="filter('completed')") Active
+        section(data-ng-cloak)
+          ul.task-list.list-unstyled
+            li(data-ng-repeat="task in tasks | filter:statusFilter track by $index"
+              data-ng-class="{completed: task.completed, editing: task == editedTask}")
+              span.view
+                input.toggle-task(type="checkbox"
+                                  data-ng-model="task.completed"
+                                  data-ng-change="completed(task)")
+                label(data-ng-dblclick="edit(task)") {{task.title}}
+                span.glyphicon.glyphicon-pencil(data-ng-click="edit(task)")
+                span.glyphicon.glyphicon-remove(data-ng-click="remove(task, $index)")
+                form(data-ng-submit="doneEditing(task, $index)")
+                  input.edit.form-control(type="text"
+                                          data-ng-trim="false"
+                                          data-ng-model="task.title"
+                                          data-ng-blur="doneEditing(task, $index)"
+                                          data-task-focus="task == editedTask")
+        footer.task-footer
+          ul.list-inline.clearfix
+            li.first-item
+              input(type="checkbox"
+                    id="toggle-all"
+                    data-ng-model="allChecked"
+                    data-ng-change="markAll(allChecked)")
+              label(for="toggle-all") Mark all as done
+            li.text-center
+              span
+                strong {{remainingCount}}
+                span.text-muted(data-ng-pluralize count="remainingCount"
+                                when="{one: 'item left', other: 'items left'}")
+            li.text-right
+              span.clear-completed(
+                data-ng-click="clearCompleted()"
+                data-ng-show="remainingCount < tasks.length") Clear completed ({{tasks.length - remainingCount}})
+
+  div.callout.callout-info
+    p Tips:
+    p - Double click the task (or click the edit icon on the right of the task) to edit, then click anywhere else done editing.
+    p - Type a something needs to done, then press "return" key (or the plus icon on the left) to add a new task
+    p - Click the remove icon on the right of the task to remove
