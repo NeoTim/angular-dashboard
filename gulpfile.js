@@ -9,7 +9,6 @@ var gulp        = require('gulp'),
     stylish     = require('jshint-stylish'),
     bower       = require('./bower'),
     isWatching  = false,
-    sync        = require('browser-sync'),
     jade        = require('gulp-jade'),
     del         = require('del');
 
