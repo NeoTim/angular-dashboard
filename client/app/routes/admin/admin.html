@@ -1,0 +1,28 @@
+<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
+
+<div class="page">
+  <div class="col-md-6" data-ng-class="{'col-md-12': !vm.details}">
+    <div class="panel">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="user in vm.users">
+            <strong>{{user.name}}</strong>
+            <button type="button" class="btn btn-primary pull-right"
+                  ng-click="vm.showUser(user);">
+                  <i class="fa fa-chevron-left" data-ng-show="vm.details"></i>
+                  <i class="fa fa-chevron-right" data-ng-hide="vm.details"></i>
+            </button>
+            <br>
+            <span class="text-muted">{{user.email}}</span>
+            <a ng-click="vm.remove(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="col-md-6" data-ng-show="vm.detals">
+    <div class="panel">
+      {{vm.currentUser}}
+    </div>
+
+  </div>
+</div>
