@@ -32,14 +32,21 @@ gulp.task('clean-js', function(done){
   del(config.build.scripts, {force:true}, done);
 });
 gulp.task('clean-all', function(done){
-  del(config.build.path, {force:true}, done);
+  del('./tmp',{force:true}, done);
 });
 
 
 gulp.task('styles', function(){
   return gulp.src(config.client.styles)
-    .pipe(g.rubySass({compass: true}))
+    .pipe(g.rubySass({compass: true, style:'compressed'}))
     .pipe(gulp.dest(config.build.styles))
+    .pipe(g.cached('built-css'))
+    .pipe(g.livereload())
+});
+gulp.task('bower', function(){
+  return gulp.src(['client/bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap', 'client/bower_components/font-awesome/scss/font-awesome'])
+    // .pipe(g.rubySass({compass: true}))
+    .pipe(gulp.dest('.tmp/bower_components/'))
     .pipe(g.cached('built-css'))
     .pipe(g.livereload())
 });
@@ -57,18 +64,23 @@ gulp.task('js', function(){
 
 gulp.task('jade', function(){
   return gulp.src(config.client.templates.jade)
-
     .pipe(jade())
     .pipe(g.angularTemplatecache('jade-templates.js', { module: "gulpApp"}))
-    .pipe(gulp.dest(config.build.path))
+    .pipe(gulp.dest('client/'))
     .pipe(g.livereload());
 });
 
 
 gulp.task('index', function(){
-  return gulp.src(config.client.index)
-    .pipe(gulp.dest(config.build.path))
-    .pipe(g.livereload());
+  var target = gulp.src(config.client.index);
+  // It's not necessary to read the files (will speed up things), we're only after their paths:
+  var sources = gulp.src(config.client.scripts.concat('.tmp/styles/**/*.css', '.tmp/styles/app/**/*.css'),{read: false});
+
+  return target.pipe(g.inject(sources, {addRootSlash: false,relative: true}))
+    .pipe(gulp.dest('client'));
+  // return gulp.src(config.client.index)
+  //   .pipe(gulp.dest(config.build.path))
+  //   .pipe(g.livereload());
 });
 
 gulp.task('vendor:scripts', function(){
@@ -93,6 +105,23 @@ gulp.task('vendor:fonts', function(){
     .pipe(gulp.dest(config.build.fonts))
 });
 
+gulp.task('wiredep', function () {
+  var wiredep = require('wiredep').stream;
+
+  // gulp.src('app/styles/*.scss')
+  //   .pipe(wiredep({
+  //       directory: 'app/bower_components'
+  //   }))
+  //   .pipe(gulp.dest('app/styles'));
+
+  gulp.src('client/*.html')
+    .pipe(wiredep({
+      directory: 'client/bower_components',
+      exclude: ['bootstrap-sass-official']
+    }))
+    .pipe(gulp.dest('client'));
+});
+
 gulp.task('develop', function () {
   g.nodemon({ script: 'servers/server/app.js', ext: 'html js', ignore: ['ignored.js'] })
     // .on('change', ['lint'])
@@ -109,7 +138,7 @@ gulp.task('watch', function(){
   gulp.watch(config.client.styles, ['styles'])
 
   gulp.watch(config.client.templates.jade, ['jade'])
-  gulp.watch(config.client.templates.html, ['html'])
+  gulp.watch(config.client.index, ['index'])
 
   builtFiles = [
     config.build.scripts + 'app.js',
@@ -136,17 +165,17 @@ gulp.task('build:scripts', ['js'])
  *   Templates
  */
 
-gulp.task('templates', ['index', 'jade', 'html']);
+gulp.task('templates', ['index', 'jade']);
 
 
 /*
  *    Styles
  */
 
-gulp.task('build:styles', ['sass', 'styles'])
+gulp.task('build:styles', ['bower', 'styles'])
 
 
-gulp.task('build', ['clean', 'build:styles', 'build:scripts', 'templates', 'assets', 'vendor']);
+gulp.task('build', ['clean-all', 'build:styles', 'build:scripts', 'templates', 'assets', 'vendor']);
 
 gulp.task('default', ['build','develop', 'watch']);
 

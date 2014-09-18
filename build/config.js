@@ -5,7 +5,7 @@ var config = {
 
     scripts: ['client/{app,components}/**/*.js','!client/{app,components}/**/*.spec.js'],
 
-    styles: ['client/app/app.scss'],
+    styles: ['client/{app,components}**/*.scss'],
 
     index: 'client/index.html',
     templates:{
